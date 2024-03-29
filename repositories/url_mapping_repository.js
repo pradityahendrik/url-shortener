@@ -12,7 +12,7 @@ UrlMappingRepository.prototype.save = async (payload) => {
 }
 
 UrlMappingRepository.prototype.findOneOrFail = async (conditions, ) => {
-  return UrlMapping.findOne(conditions);
+  return UrlMapping.findOne({ where: conditions });
 }
 
 module.exports = UrlMappingRepository
