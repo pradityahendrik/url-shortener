@@ -23,6 +23,10 @@ module.exports = {
       updated_at: {
         type: DataTypes.DATE,
         allowNull: true
+      },
+      deleted_at: {
+        type: DataTypes.DATE,
+        allowNull: true
       }
     })
   },

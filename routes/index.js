@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var { urlMappingService } = require('../services');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', async (req, res, next) => {
+  const result = await urlMappingService.check();
+  res.status(200).json(result)
 });
 
 module.exports = router;
