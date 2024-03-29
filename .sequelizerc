@@ -1,8 +1,7 @@
 const path = require('path');
 module.exports = {
-    'url': 'postgresql://admin:admin@localhost:5432/pelindo',
     'migrations-path': path.join(__dirname, 'databases/migrations'),
     'seeders-path': path.join(__dirname, 'databases/seeders'),
     'models-path': path.join(__dirname, 'databases/models'),
-    'config': path.join(__dirname, 'databases/config/config.js')
+    'config': path.resolve('databases/config/config.js')
 }
