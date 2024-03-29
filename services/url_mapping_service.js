@@ -14,9 +14,8 @@ UrlMappingService.prototype.shorten = async (url) => {
     return result;
 }
 
-UrlMappingService.prototype.check = async () => {
-    const result = await urlMappingRepository.check();
-    return result;
+UrlMappingService.prototype.getByShortCode = async (shortCode) => {
+    return urlMappingRepository.findOneOrFail({ short_code: shortCode });
 }
 
 const generateShortCode = async () => {

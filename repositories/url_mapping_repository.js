@@ -11,8 +11,8 @@ UrlMappingRepository.prototype.save = async (payload) => {
   return save;
 }
 
-UrlMappingRepository.prototype.check = async () => {
-  return UrlMapping.findAll();
+UrlMappingRepository.prototype.findOneOrFail = async (conditions, ) => {
+  return UrlMapping.findOne(conditions);
 }
 
 module.exports = UrlMappingRepository

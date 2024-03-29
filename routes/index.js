@@ -7,8 +7,8 @@ router.post('/shorten', async (req, res, next) => {
   res.status(200).json(result)
 });
 
-router.get('/', async (req, res, next) => {
-  const result = await urlMappingService.check();
+router.get('/:shortCode', async (req, res, next) => {
+  const result = await urlMappingService.getByShortCode(req.params.shortCode);
   res.status(200).json(result)
 });
 
