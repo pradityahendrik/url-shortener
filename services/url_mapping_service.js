@@ -1,15 +1,11 @@
-const { v4: uuidv4 } = require('uuid');
 const { urlMappingRepository } = require('../repositories');
+const { urlMappingTransformer } = require('../transformers');
 
 const UrlMappingService = function(){};
 
 UrlMappingService.prototype.shorten = async (url) => {
     const shortCode = await generateShortCode();
-    const payload = {
-        id: uuidv4(),
-        url,
-        shortCode
-    };
+    const payload = urlMappingTransformer.saveShortenPayload(url, shortCode);
     const result = await urlMappingRepository.save(payload);
     return result;
 }
