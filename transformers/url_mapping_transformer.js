@@ -1,14 +1,18 @@
 const { v4: uuidv4 } = require('uuid');
-const UrlMappingTransformer = function(){};
 
-UrlMappingTransformer.prototype.saveShortenPayload = (url, shortCode) => {
-    const payload = {
+exports.saveShortenPayload = (url, shortCode) => {
+    return {
         id: uuidv4(),
         url,
         shortCode
     };
-
-    return payload;
 }
 
-module.exports = UrlMappingTransformer
+exports.shortenUrlResponse = (data) => {
+    return {
+        long_url: data.long_url,
+        short_url: `https://short.en/${data.short_code}`
+    }
+}
+
+module.exports = exports;

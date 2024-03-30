@@ -1,8 +1,6 @@
 var UrlMapping = require('../databases/models/url_mapping');
 
-var UrlMappingRepository = function () {};
-
-UrlMappingRepository.prototype.save = async (payload) => {
+exports.save = async (payload) => {
   const save = await UrlMapping.create({
     id: payload.id,
     long_url: payload.url,
@@ -11,8 +9,8 @@ UrlMappingRepository.prototype.save = async (payload) => {
   return save;
 }
 
-UrlMappingRepository.prototype.findOneOrFail = async (conditions, ) => {
+exports.findOneOrFail = async (conditions, ) => {
   return UrlMapping.findOne({ where: conditions });
 }
 
-module.exports = UrlMappingRepository
+module.exports = exports

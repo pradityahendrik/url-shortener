@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const { validateInput } = require('../validations');
 const { urlMappingSchema  } = require('../validations/schemas/url_mapping_schema');
-var { urlMappingService } = require('../services');
+const urlMappingService = require('../services/url_mapping_service');
 
 /**
  * @swagger
