@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const { validateInput } = require('../validations');
+const { urlMappingSchema  } = require('../validations/schemas/url_mapping_schema');
 var { urlMappingService } = require('../services');
 
 /**
@@ -23,7 +25,7 @@ var { urlMappingService } = require('../services');
  *       400:
  *         description: Bad request, invalid input
  */
-router.post('/shorten', async (req, res, next) => {
+router.post('/shorten', validateInput(urlMappingSchema.shortenUrl), async (req, res, next) => {
   const result = await urlMappingService.shorten(req.body.url);
   res.status(200).json(result)
 });
@@ -44,9 +46,9 @@ router.post('/shorten', async (req, res, next) => {
  *       200:
  *         description: Successfully retrieved url data by short code
  *       404:
- *         description: Item not found
+ *         description: Data not found
  */
-router.get('/:shortCode', async (req, res, next) => {
+router.get('/:shortCode', validateInput(urlMappingSchema.getByShortCode), async (req, res, next) => {
   const result = await urlMappingService.getByShortCode(req.params.shortCode);
   res.status(200).json(result)
 });
