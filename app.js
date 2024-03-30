@@ -5,6 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const swaggerUi = require('swagger-ui-express');
 const specs = require('./swagger-config');
+const rateLimit = require('express-rate-limit');
+
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minutes
+  max: 5, // limit each IP to 5 requests per windowMs
+  message: {
+    code: 429, 
+    message: 'Too many requests'
+  }
+});
 
 var indexRouter = require('./routes/index');
 
@@ -21,6 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(limiter);
 
 app.use('/', indexRouter);
 

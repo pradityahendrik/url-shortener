@@ -19,7 +19,7 @@ var { urlMappingService } = require('../services');
  *                 description: Long url
  *     responses:
  *       201:
- *         description: Successfully added the item to the to-do list
+ *         description: Successfully generate and store short url
  *       400:
  *         description: Bad request, invalid input
  */
