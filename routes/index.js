@@ -27,7 +27,7 @@ const urlMappingService = require('../services/url_mapping_service');
  */
 router.post('/shorten', validateInput(urlMappingSchema.shortenUrl), async (req, res, next) => {
   const result = await urlMappingService.shorten(req.body.url);
-  res.status(200).json(result)
+  res.status(result.code).json(result.response);
 });
 
 /**
@@ -50,7 +50,7 @@ router.post('/shorten', validateInput(urlMappingSchema.shortenUrl), async (req, 
  */
 router.get('/:shortCode', validateInput(urlMappingSchema.getByShortCode), async (req, res, next) => {
   const result = await urlMappingService.getByShortCode(req.params.shortCode);
-  res.status(200).json(result)
+  res.status(result.code).json(result.response);
 });
 
 module.exports = router;

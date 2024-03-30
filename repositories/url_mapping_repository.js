@@ -9,7 +9,7 @@ exports.save = async (payload) => {
   return save;
 }
 
-exports.findOneOrFail = async (conditions, ) => {
+exports.findOne = async (conditions) => {
   return UrlMapping.findOne({ where: conditions });
 }
 
