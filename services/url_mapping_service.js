@@ -2,6 +2,7 @@ const urlMappingRepository = require('../repositories/url_mapping_repository');
 const urlMappingTransformer = require('../utils/transformers/url_mapping_transformer');
 const response = require('../utils/helpers/response');
 const redisClient = require('../databases/redis');
+const constant = require('../utils/constants/url_mapping_constant');
 
 exports.shorten = async (url) => {
     try {
@@ -14,7 +15,7 @@ exports.shorten = async (url) => {
         const payload = urlMappingTransformer.saveShortenPayload(url, shortCode);
         const data = await urlMappingRepository.save(payload);
         const result = urlMappingTransformer.shortenUrlResponse(data);
-        await redisClient.set(`shortern:${shortCode}`, JSON.stringify(result));
+        await redisClient.set(`${constant.prefixKey}${shortCode}`, JSON.stringify(data));
         return response.info(200, 'success', result);
     } catch (err) {
         return response.info(err.code, err.message);
@@ -24,13 +25,13 @@ exports.shorten = async (url) => {
 exports.getByShortCode = async (shortCode) => {
     try {
         let data;
-        const cache = await redisClient.get(`shortern:${shortCode}`)
+        const cache = await redisClient.get(`${constant.prefixKey}${shortCode}`)
 
         if (cache) {
             data = JSON.parse(cache);
         } else {
             data = await urlMappingRepository.findOne({ short_code: shortCode });
-            await redisClient.set(`shortern:${shortCode}`, JSON.stringify(data));
+            await redisClient.set(`${constant.prefixKey}${shortCode}`, JSON.stringify(data));
         }
 
         if (!data) {
