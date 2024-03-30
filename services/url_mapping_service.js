@@ -1,5 +1,5 @@
 const urlMappingRepository = require('../repositories/url_mapping_repository');
-const urlMappingTransformer = require('../transformers/url_mapping_transformer');
+const urlMappingTransformer = require('../utils/transformers/url_mapping_transformer');
 
 exports.shorten = async (url) => {
     try {
