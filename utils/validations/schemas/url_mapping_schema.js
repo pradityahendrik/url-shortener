@@ -8,7 +8,7 @@ const urlMappingSchema = {
   },
   getByShortCode: {
     params: Joi.object({
-      shortCode: Joi.string().required().max(6),
+      shortCode: Joi.string().required().min(6).max(6),
     })
   }
 };
