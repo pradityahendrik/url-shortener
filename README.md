@@ -9,6 +9,13 @@ A simple url shortener service.
 $ npm install
 ```
 
+## Docker compose
+
+```bash
+# Running postgresql and redis
+$ docker-compose up -d
+```
+
 ## Seed and Migrations
 
 ```bash
@@ -38,4 +45,11 @@ $ npm run start
 ```bash
 # unit tests
 $ npm run test
+```
+
+## Api Docs (Swagger)
+
+```bash
+# open in browser
+$ localhost:3000/api-docs
 ```
