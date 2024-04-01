@@ -1,6 +1,4 @@
 # url-shortener
-Simple URL Shortener
-
 ## Description
 
 A simple url shortener service.
