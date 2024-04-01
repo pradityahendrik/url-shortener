@@ -3,10 +3,11 @@ const urlMappingTransformer = require('../utils/transformers/url_mapping_transfo
 const response = require('../utils/helpers/response');
 const redisClient = require('../databases/redis');
 const constant = require('../utils/constants/url_mapping_constant');
+const helper = require('../utils/helpers/helper');
 
 exports.shorten = async (url) => {
     try {
-        const shortCode = await generateShortCode();
+        const shortCode = await helper.generateShortCode();
         const check = await urlMappingRepository.findOne({ long_url: url });
         if (check) {
             const result = urlMappingTransformer.shortenUrlResponse(check);
@@ -43,10 +44,6 @@ exports.getByShortCode = async (shortCode) => {
     } catch (err) {
         return response.info(err.code, err.message);
     }
-};
-
-const generateShortCode = async () => {
-    return Math.random().toString(36).substr(2, 6);
 };
 
 module.exports = exports;

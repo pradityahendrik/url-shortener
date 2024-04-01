@@ -1,3 +1,3 @@
-exports.prefixKey = 'shortern:';
+exports.prefixKey = 'shorten:';
 
 module.exports = exports;

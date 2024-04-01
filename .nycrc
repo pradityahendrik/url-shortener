@@ -1,0 +1,21 @@
+{
+  "extension": [
+    ".js"
+  ],
+  "include": [
+    "services/**",
+    "repositories/**"
+  ],
+  "exclude": [
+    "routes/**",
+    "utils/**",
+    "databases/**"
+  ],
+  "reporter": [
+    "html",
+    "text"
+  ],
+  "all": true,
+  "check-coverage": true,
+  "lines": 94.70
+}
